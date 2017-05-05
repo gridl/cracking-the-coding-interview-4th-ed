@@ -1,18 +1,32 @@
 
-def buildMap(students):
-    student_map = {}
-    for s in students:
-        student_map[s.get_id()] = s
-    return student_map
+class Node:
+    def __init__(self):
+        self.data = None
+        self.next = None
+    def __str__(self):
+        return "Data %s: Next -> %s" % (self.data, self.next)
 
-def merge(words, more):
-    sentence = []
-    for(w in words): sentence.append(w)
-    for(w in more): sentence.append(w)
+class LinkedList:
+    def __init__(self):
+        self.head = Node()
+        self.curNode = self.head
 
-def make_sentence(words):
-    sentence = ""
-    for(w in words): sentence += w + " "
-    return sentence
+    def insertNode(self, data):
+        node = Node()
+        node.data = data
+        node.next = None
+
+        if self.head.data == None:
+            self.head = node
+            self.curNode = node
+
+        else:
+            self.curNode.next = node
+            self.curNode = node
+
+    def printList(self):
+        print(self.head)
+
+
 
 
