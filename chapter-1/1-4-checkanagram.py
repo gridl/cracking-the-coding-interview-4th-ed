@@ -1,7 +1,7 @@
 
 # Write a method to decide if two strings are anagrams or not
 
-# Are both words the same size?
+# Are both words always the same size?
 #   Yes
 # Can I use python native functions like ord()?
 #   Yes
