@@ -8,21 +8,35 @@ class Node:
 
 class LinkedList:
     def __init__(self):
-        self.head = Node()
-        self.curNode = self.head
+        self.head = None
 
-    def insertNode(self, data):
+    def append(self, data):
         node = Node()
         node.data = data
         node.next = None
 
-        if self.head.data == None:
+        if self.head == None:
             self.head = node
-            self.curNode = node
 
         else:
-            self.curNode.next = node
-            self.curNode = node
+            curr = self.head
+            while curr.next:
+                curr = curr.next
+
+            curr.next = node
+
+    def remove(self, data):
+        node = self.head
+        if node.data == data:
+            self.head = self.head.next
+        else:
+            while node.next:
+                if node.next.data == data:
+                    node.next = node.next.next
+                    break
+
+        return node
+
 
     def printList(self):
         print(self.head)
@@ -34,7 +48,7 @@ class Stack:
     def pop(self):
 
         if self.top != None:
-            item = top.data
+            item = self.top.data
             self.top = self.top.next
             return item
 
@@ -45,7 +59,7 @@ class Stack:
             self.first = None
             self.last = None
 
-        def enqueue(data):
+        def enqueue(self, data):
             if not self.first:
                 self.last = Node(data)
                 self.first = self.last
