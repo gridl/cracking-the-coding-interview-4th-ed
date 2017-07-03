@@ -1,1 +1,1 @@
-from
+../datastructs/stack.py

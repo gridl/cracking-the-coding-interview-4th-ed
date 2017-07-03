@@ -8,7 +8,8 @@ class Node:
 
 class LinkedList:
     def __init__(self, with_data=False):
-        self.head = None
+        self._head = None
+        self._size = 0
 
         if with_data:
             self.append(0)
@@ -23,21 +24,23 @@ class LinkedList:
     def append(self, data):
         node = Node(data)
 
-        if not self.head:
-            self.head = node
+        if not self._head:
+            self._head = node
             return node
 
         else:
-            current = self.head
+            current = self._head
             while current.next:
                 current = current.next
 
             current.next = node
 
+        self._size += 1
+
         return node
 
     def get(self, index):
-        curr = self.head
+        curr = self._head
         curr_idx = 0
         while curr:
             if curr_idx == index:
@@ -45,9 +48,12 @@ class LinkedList:
             curr_idx += 1
             curr = curr.next
 
+    def __len__(self):
+        return self._size
+
     def __str__(self):
         return_str = []
-        node = self.head
+        node = self._head
         return_str = ["Nodes: "]
         while node:
             return_str.append(str(node.data))
