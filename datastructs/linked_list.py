@@ -48,6 +48,34 @@ class LinkedList:
             curr_idx += 1
             curr = curr.next
 
+    def removeAt(self, idx):
+        if idx >= self._size:
+            return None
+
+        node = None
+
+        if idx == 0:
+            node = self._head
+            self._head = self._head.next
+        else:
+            curr_idx = 1
+            prev = self._head
+            curr = self._head.next
+
+            while curr:
+                if curr_idx == idx:
+                    prev.next = curr.next
+                    node = curr
+                    break
+                else:
+                    prev = curr
+                curr_idx += 1
+                curr = curr.next
+
+        self._size -= 1
+        return node
+
+
     def __len__(self):
         return self._size
 
@@ -67,4 +95,8 @@ if __name__ == "__main__":
 
     n2 = ll.get(2)
     print(n2)
+    print(ll)
+
+    n2 = ll.removeAt(2)
+    print(ll)
 

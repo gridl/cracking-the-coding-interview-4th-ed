@@ -30,7 +30,25 @@ class SetOfStacks:
 
         return node
 
-    def popAt(sel
+    def popAt(self, idx):
+        stack_idx = int(idx / self._max_size)
+        actual_idx = idx % self._max_size
+        stack = self._stacks[stack_idx]
+        node = stack.popAt(actual_idx)
+        # Now we need to shift everything
+        curr_idx = stack_idx
+        next_stack = None
+
+        while curr_idx < len(self._stacks) - 1:
+            curr_stack = self._stacks[curr_idx]
+            next_stack = self._stacks[curr_idx + 1]
+            curr_stack.push(next_stack.popAt(0))
+            curr_idx += 1
+
+        if not len(next_stack):
+            self._stacks.pop()
+
+        return node
 
     def __str__(self):
         return "\n".join([str(s) for s in self._stacks])
@@ -66,8 +84,23 @@ if __name__ == "__main__":
     s.pop()
     s.pop()
     s.pop()
-    s.pop()
     print(s)
+
+    print("\nthat's done\n")
+    s.popAt(0)
+    print(s)
+
+    print("\nthat's done\n")
+    s.popAt(0)
+    print(s)
+
+    s.push(8)
+    print(s)
+
+    print("\nthat's done\n")
+    s.popAt(4)
+    print(s)
+
 
 
 

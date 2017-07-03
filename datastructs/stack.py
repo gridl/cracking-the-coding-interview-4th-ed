@@ -22,6 +22,10 @@ class Stack(LinkedList):
         self._size -= 1
         return top
 
+    def popAt(self, idx):
+        return self.removeAt(self._size - idx - 1)
+
+
     def peek(self):
         return self._head.data if self._head else None
 
